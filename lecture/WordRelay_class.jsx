@@ -7,14 +7,12 @@ class WordRelay extends Component {
     value: "",
     result: "",
   };
+
   onSubmitForm = (e) => {
     e.preventDefault();
+    console.log(this.state.word.length - 1);
     if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
-      this.setState({
-        word: this.state.value,
-        result: "정답",
-        value: "",
-      });
+      this.setState({ result: "딩동댕", word: this.state.value, value: "" });
       this.input.focus();
     } else {
       this.setState({
@@ -24,25 +22,27 @@ class WordRelay extends Component {
       this.input.focus();
     }
   };
-  onChange = (e) => {
+  onChangeInput = (e) => {
     this.setState({ value: e.target.value });
   };
+
   input;
   onRefInput = (c) => {
     this.input = c;
   };
+
   render() {
     return (
       <>
         <div>{this.state.word}</div>
         <form onSubmit={this.onSubmitForm}>
           <input
-            type="text"
             ref={this.onRefInput}
-            onChange={this.onChange}
-            value={this.state.value}
-          />
-          <button>입력</button>
+            value={this.value}
+            onChange={this.onChangeInput}
+            type="text"
+          ></input>
+          <button>입력!!</button>
         </form>
         <div>{this.state.result}</div>
       </>
