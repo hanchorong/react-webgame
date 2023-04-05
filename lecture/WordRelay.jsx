@@ -1,53 +1,37 @@
 const React = require("react");
-const { Component } = React;
+const { useState, useRef } = React;
+const WordRelay = () => {
+  const [word, setWord] = React.useState("한초롱");
+  const [value, setValue] = useState("");
+  const [result, setResult] = useState("");
+  const onRefInput = useRef(null);
 
-class WordRelay extends Component {
-  state = {
-    word: "한초롱",
-    value: "",
-    result: "",
-  };
-  onSubmitForm = (e) => {
+  const onSubmitForm = (e) => {
     e.preventDefault();
-    if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
-      this.setState({
-        word: this.state.value,
-        result: "정답",
-        value: "",
-      });
-      this.input.focus();
+    if (word[word.length - 1] === value[0]) {
+      setResult("정답");
+      setValue("");
+      onRefInput.current.focus();
     } else {
-      this.setState({
-        result: "땡",
-        value: "",
-      });
-      this.input.focus();
+      setResult("땡");
+      setValue("");
+      onRefInput.current.focus();
     }
   };
-  onChange = (e) => {
-    this.setState({ value: e.target.value });
+  const onChange = (e) => {
+    setValue(e.target.value);
   };
-  input;
-  onRefInput = (c) => {
-    this.input = c;
-  };
-  render() {
-    return (
-      <>
-        <div>{this.state.word}</div>
-        <form onSubmit={this.onSubmitForm}>
-          <input
-            type="text"
-            ref={this.onRefInput}
-            onChange={this.onChange}
-            value={this.state.value}
-          />
-          <button>입력</button>
-        </form>
-        <div>{this.state.result}</div>
-      </>
-    );
-  }
-}
+
+  return (
+    <>
+      <div>{word}</div>
+      <form onSubmit={onSubmitForm}>
+        <input type="text" ref={onRefInput} onChange={onChange} value={value} />
+        <button>입력</button>
+      </form>
+      <div>{result}</div>
+    </>
+  );
+};
 
 module.exports = WordRelay;
