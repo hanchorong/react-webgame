@@ -57,7 +57,7 @@ class Gugudan extends Component {
             value={this.state.value}
             onChange={this.onChange}
           ></input>
-          <button>입력</button>
+          <button>입력!!!</button>
         </form>
         <div>{this.state.result}</div>
       </div>
