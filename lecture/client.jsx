@@ -8,6 +8,6 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-import ResponseCheck from "./ResponseCheck";
+import RCP from "./RCP";
 
-ReactDom.render(<ResponseCheck />, document.querySelector("#root"));
+ReactDom.render(<RCP />, document.querySelector("#root"));
