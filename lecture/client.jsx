@@ -8,6 +8,6 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-import RCP from "./RCP";
+import Lotto from "./Lotto";
 
-ReactDom.render(<RCP />, document.querySelector("#root"));
+ReactDom.render(<Lotto />, document.querySelector("#root"));
