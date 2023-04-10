@@ -21,5 +21,6 @@ const Ball = memo(({ number }) => {
     </>
   );
 });
+Ball.displayName = "Ball";
 
 export default Ball;
