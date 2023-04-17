@@ -1,33 +1,29 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useContext } from "react";
+import { TableContext, START_GAME } from "./MineSearch";
 
 const Form = memo(() => {
   const [row, setRow] = useState(10);
   const [cell, setCell] = useState(10);
   const [mine, setMine] = useState(10);
 
-  const onChangeRow = useCallback(
-    (e) => {
-      setRow(e.target.value);
-    },
-    [row]
-  );
-  const onChangeCell = useCallback(
-    (e) => {
-      setCell(e.target.value);
-    },
-    [cell]
-  );
-  const onChangeMine = useCallback(
-    (e) => {
-      setMine(e.target.value);
-    },
-    [mine]
-  );
+  const { dispatch } = useContext(TableContext);
 
-  const onClickBtn = useCallback(() => {}, []);
+  const onChangeRow = useCallback((e) => {
+    setRow(e.target.value);
+  }, []);
+  const onChangeCell = useCallback((e) => {
+    setCell(e.target.value);
+  }, []);
+  const onChangeMine = useCallback((e) => {
+    setMine(e.target.value);
+  }, []);
+
+  const onClickBtn = useCallback(() => {
+    dispatch({ type: START_GAME, row, cell, mine });
+  }, [row, cell, mine]);
   return (
     <>
-      <form>
+      <div>
         <input
           onChange={onChangeRow}
           value={row}
@@ -47,7 +43,7 @@ const Form = memo(() => {
           type="number"
         />
         <button onClick={onClickBtn}>시작</button>
-      </form>
+      </div>
     </>
   );
 });
